@@ -4,18 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4d2233-f23c-4d39-a47c-24d40c4d3241" name="Changes" comment="first">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0e4d2233-f23c-4d39-a47c-24d40c4d3241" name="Changes" comment="working 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/100.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/100.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/GlebiaChallengera.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/GlebiaChallengera.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/Hel_yeah.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/Hel_yeah.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/MountEverest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/MountEverest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/Obiadek.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/Obiadek.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/Redlujjj.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/Redlujjj.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/SpacerniakGdansk.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/SpacerniakGdansk.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/Unsyncable_ride.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/Unsyncable_ride.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018_paths/WielkiKanionKolorado.csv" beforeDir="false" afterPath="$PROJECT_DIR$/2018_paths/WielkiKanionKolorado.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/100.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/100.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/GlebiaChallengera.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/GlebiaChallengera.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/Hel_yeah.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/Hel_yeah.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/MountEverest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/MountEverest.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/Obiadek.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/Obiadek.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/Redlujjj.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/Redlujjj.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/SpacerniakGdansk.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/SpacerniakGdansk.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/Unsyncable_ride.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/Unsyncable_ride.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/WielkiKanionKolorado.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths/WielkiKanionKolorado.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/chelm.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/chelm.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/genoa_rapallo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/genoa_rapallo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/in_mountain.data" beforeDir="false" afterPath="$PROJECT_DIR$/paths/in_mountain.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/ostrowa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/ostrowa.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/przyk3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/przyk3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/rozne_wniesienia.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/rozne_wniesienia.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/stale.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/stale.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/tczew_starogard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/tczew_starogard.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018_paths/ulm_lugano.txt" beforeDir="false" afterPath="$PROJECT_DIR$/paths/ulm_lugano.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +107,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716898457764</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="working 1.0">
+      <option name="closed" value="true" />
+      <created>1717155200817</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717155200817</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,7 +131,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="working 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="working 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

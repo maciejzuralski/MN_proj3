@@ -4,62 +4,50 @@ import pandas as pd
 import math
 
 
-def cubic_spline(x, y):
+def cubicSpline(x, y):
     n = len(x)
     h = [x[i + 1] - x[i] for i in range(n - 1)]
     a = y
-    b = [0] * (n - 1)
-    d = [0] * (n - 1)
-    c = solve_c(x, y, h, n)
-    compute_coefficients(a, b, c, d, h, n)
+    b = [0 for _ in range(n - 1)]
+    d = [0 for _ in range(n - 1)]
+    c = solveC(x, y, h, n)
+    computeCoefficients(a, b, c, d, h, n)
 
     return a, b, c, d, x
 
 
-def solve_c(x, y, h, n):
-    A = [[0] * n for _ in range(n)]
-    b = [0] * n
+def solveC(x, y, h, n):
+    A = [[0 for _ in range(n)] for _ in range(n)]
+    b = [0 for _ in range(n)]
 
-    # Boundary conditions (natural spline)
     A[0][0] = 1
     A[n - 1][n - 1] = 1
 
-    # Fill the system with equations
     for i in range(1, n - 1):
         A[i][i - 1] = h[i - 1]
         A[i][i] = 2 * (h[i - 1] + h[i])
         A[i][i + 1] = h[i]
         b[i] = 3 * ((y[i + 1] - y[i]) / h[i] - (y[i] - y[i - 1]) / h[i - 1])
 
-    # Solve the system using Gaussian elimination
-    for i in range(1, n):
-        m = A[i][i - 1] / A[i - 1][i - 1]
-        A[i][i] -= m * A[i - 1][i]
-        b[i] -= m * b[i - 1]
-
-    c = [0] * n
-    c[n - 1] = b[n - 1] / A[n - 1][n - 1]
-    for i in range(n - 2, -1, -1):
-        c[i] = (b[i] - A[i][i + 1] * c[i + 1]) / A[i][i]
-
+    c = np.linalg.solve(np.array(A), np.array(b))
     return c
 
 
-def compute_coefficients(a, b, c, d, h, n):
+def computeCoefficients(a, b, c, d, h, n):
     for i in range(n - 1):
         b[i] = (a[i + 1] - a[i]) / h[i] - h[i] * (2 * c[i] + c[i + 1]) / 3
         d[i] = (c[i + 1] - c[i]) / (3 * h[i])
 
 
-def evaluate_spline(a, b, c, d, x, x_val):
-    i = find_segment(x, x_val)
-    dx = x_val - x[i]
+def evaluateSpline(a, b, c, d, x, xVal):
+    i = findSegment(x, xVal)
+    dx = xVal - x[i]
     return a[i] + b[i] * dx + c[i] * dx**2 + d[i] * dx**3
 
 
-def find_segment(x, x_val):
+def findSegment(x, xVal):
     for i in range(len(x) - 1):
-        if x[i] <= x_val <= x[i + 1]:
+        if x[i] <= xVal <= x[i + 1]:
             return i
 
 
@@ -100,13 +88,14 @@ def lagrangeInterpolation(xPoints, yPoints, x):
     return result
 
 
-def showWithSpecialFormat(xPoints, yPoints, x_new, y_new, interpolationType, nodePointsType):
+def showWithSpecialFormat(x, y, xPoints, yPoints, x_new, y_new, interpolationType, nodePointsType, path):
     plt.scatter(xPoints, yPoints, color='red', label=f'Punkty węzłowe {nodePointsType}')
     plt.plot(x_new, y_new, label='Wielomian interpolacyjny')
+    plt.plot(x, y, label='oryginalne wartości')
     plt.legend()
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title(f'Interpolacja {interpolationType}')
+    plt.title(f'{path}\nInterpolacja {interpolationType}')
     plt.show()
 
 
@@ -117,28 +106,28 @@ def interpolationForSpecificData(path, nodePoints):
 
     xPoints, yPoints = linearPoints(x, y, nodePoints)
 
-    x_new = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
-    y_new = [lagrangeInterpolation(xPoints, yPoints, xi) for xi in x_new]
-    showWithSpecialFormat(xPoints, yPoints, x_new, y_new, 'Lagrange', 'liniowe')
+    xNew = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
+    yNew = [lagrangeInterpolation(xPoints, yPoints, xi) for xi in xNew]
+    showWithSpecialFormat(x, y, xPoints, yPoints, xNew, yNew, 'Lagrange', 'liniowe', path)
 
-    a, b, c, d, xPoints = cubic_spline(xPoints, yPoints)
-    x_new = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
-    y_new = [evaluate_spline(a, b, c, d, xPoints, val) for val in x_new]
-    showWithSpecialFormat(xPoints, yPoints, x_new, y_new, 'funkcji sklejania trzeciego stopnia', 'liniowe')
+    a, b, c, d, xPoints = cubicSpline(xPoints, yPoints)
+    xNew = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
+    yNew = [evaluateSpline(a, b, c, d, xPoints, val) for val in xNew]
+    showWithSpecialFormat(x, y, xPoints, yPoints, xNew, yNew, 'funkcji sklejania trzeciego stopnia', 'liniowe', path)
 
     xPoints, yPoints = chebyshevNodes(x, y, nodePoints)
 
-    x_new = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
-    y_new = [lagrangeInterpolation(xPoints, yPoints, xi) for xi in x_new]
-    showWithSpecialFormat(xPoints, yPoints, x_new, y_new, 'Lagrange', 'Czebyszewa')
+    xNew = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
+    yNew = [lagrangeInterpolation(xPoints, yPoints, xi) for xi in xNew]
+    showWithSpecialFormat(x, y, xPoints, yPoints, xNew, yNew, 'Lagrange', 'Czebyszewa', path)
 
-    a, b, c, d, xPoints = cubic_spline(xPoints, yPoints)
-    x_new = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
-    y_new = [evaluate_spline(a, b, c, d, xPoints, val) for val in x_new]
-    showWithSpecialFormat(xPoints, yPoints, x_new, y_new, 'funkcji sklejania trzeciego stopnia', 'Czebyszewa')
+    a, b, c, d, xPoints = cubicSpline(xPoints, yPoints)
+    xNew = [i for i in range(int(min(xPoints)), int(max(xPoints)), int((max(xPoints) - min(xPoints)) / 1000))]
+    yNew = [evaluateSpline(a, b, c, d, xPoints, val) for val in xNew]
+    showWithSpecialFormat(x, y, xPoints, yPoints, xNew, yNew, 'funkcji sklejania trzeciego stopnia', 'Czebyszewa', path)
 
 
 if __name__ == '__main__':
-    interpolationForSpecificData('2018_paths/WielkiKanionKolorado.csv', 30)
-    interpolationForSpecificData('2018_paths/SpacerniakGdansk.csv', 20)
-    interpolationForSpecificData('2018_paths/MountEverest.csv', 10)
+    interpolationForSpecificData('paths/MountEverest.csv', 5)
+    interpolationForSpecificData('paths/WielkiKanionKolorado.csv', 20)
+    interpolationForSpecificData('paths/SpacerniakGdansk.csv', 20)
